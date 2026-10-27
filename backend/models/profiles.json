@@ -1,0 +1,42 @@
+{
+  "Cassava": {
+    "india_median_hg": 269087.0,
+    "global_median_hg": 128200.0
+  },
+  "Maize": {
+    "india_median_hg": 18216.0,
+    "global_median_hg": 25401.0
+  },
+  "Plantains and others": {
+    "india_median_hg": 89860.5,
+    "global_median_hg": 89860.5
+  },
+  "Potatoes": {
+    "india_median_hg": 185920.0,
+    "global_median_hg": 182271.0
+  },
+  "Rice, paddy": {
+    "india_median_hg": 29756.0,
+    "global_median_hg": 35878.0
+  },
+  "Sorghum": {
+    "india_median_hg": 8472.0,
+    "global_median_hg": 12885.0
+  },
+  "Soybeans": {
+    "india_median_hg": 10319.0,
+    "global_median_hg": 15533.0
+  },
+  "Sweet potatoes": {
+    "india_median_hg": 86907.0,
+    "global_median_hg": 99940.0
+  },
+  "Wheat": {
+    "india_median_hg": 26789.0,
+    "global_median_hg": 25497.0
+  },
+  "Yams": {
+    "india_median_hg": 92593.0,
+    "global_median_hg": 92593.0
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "recommendation": {
+    "chosen": "Random Forest",
+    "results": [
+      {
+        "model": "Random Forest",
+        "accuracy": 0.9955,
+        "precision": 0.9957,
+        "recall": 0.9955,
+        "f1": 0.9955
+      },
+      {
+        "model": "Decision Tree",
+        "accuracy": 0.9795,
+        "precision": 0.9806,
+        "recall": 0.9795,
+        "f1": 0.9794
+      },
+      {
+        "model": "Logistic Regression",
+        "accuracy": 0.9727,
+        "precision": 0.974,
+        "recall": 0.9727,
+        "f1": 0.9725
+      },
+      {
+        "model": "K-Nearest Neighbors",
+        "accuracy": 0.9795,
+        "precision": 0.9804,
+        "recall": 0.9795,
+        "f1": 0.9793
+      },
+      {
+        "model": "Gaussian Naive Bayes",
+        "accuracy": 0.9955,
+        "precision": 0.9959,
+        "recall": 0.9955,
+        "f1": 0.9954
+      },
+      {
+        "model": "SVM (RBF)",
+        "accuracy": 0.9841,
+        "precision": 0.9856,
+        "recall": 0.9841,
+        "f1": 0.984
+      }
+    ],
+    "importance": {
+      "N": 0.1039,
+      "P": 0.1537,
+      "K": 0.1792,
+      "temperature": 0.0758,
+      "humidity": 0.2119,
+      "ph": 0.0539,
+      "rainfall": 0.2215
+    },
+    "test_size": 440,
+    "classes": [
+      "apple",
+      "banana",
+      "blackgram",
+      "chickpea",
+      "coconut",
+      "coffee",
+      "cotton",
+      "grapes",
+      "jute",
+      "kidneybeans",
+      "lentil",
+      "maize",
+      "mango",
+      "mothbeans",
+      "mungbean",
+      "muskmelon",
+      "orange",
+      "papaya",
+      "pigeonpeas",
+      "pomegranate",
+      "rice",
+      "watermelon"
+    ],
+    "ideals": {
+      "apple": {
+        "N": 20.8,
+        "P": 134.2,
+        "K": 199.9,
+        "temperature": 22.6,
+        "humidity": 92.3,
+        "ph": 5.9,
+        "rainfall": 112.7
+      },
+      "banana": {
+        "N": 100.2,
+        "P": 82.0,
+        "K": 50.0,
+        "temperature": 27.4,
+        "humidity": 80.4,
+        "ph": 6.0,
+        "rainfall": 104.6
+      },
+      "blackgram": {
+        "N": 40.0,
+        "P": 67.5,
+        "K": 19.2,
+        "temperature": 30.0,
+        "humidity": 65.1,
+        "ph": 7.1,
+        "rainfall": 67.9
+      },
+      "chickpea": {
+        "N": 40.1,
+        "P": 67.8,
+        "K": 79.9,
+        "temperature": 18.9,
+        "humidity": 16.9,
+        "ph": 7.3,
+        "rainfall": 80.1
+      },
+      "coconut": {
+        "N": 22.0,
+        "P": 16.9,
+        "K": 30.6,
+        "temperature": 27.4,
+        "humidity": 94.8,
+        "ph": 6.0,
+        "rainfall": 175.7
+      },
+      "coffee": {
+        "N": 101.2,
+        "P": 28.7,
+        "K": 29.9,
+        "temperature": 25.5,
+        "humidity": 58.9,
+        "ph": 6.8,
+        "rainfall": 158.1
+      },
+      "cotton": {
+        "N": 117.8,
+        "P": 46.2,
+        "K": 19.6,
+        "temperature": 24.0,
+        "humidity": 79.8,
+        "ph": 6.9,
+        "rainfall": 80.4
+      },
+      "grapes": {
+        "N": 23.2,
+        "P": 132.5,
+        "K": 200.1,
+        "temperature": 23.8,
+        "humidity": 81.9,
+        "ph": 6.0,
+        "rainfall": 69.6
+      },
+      "jute": {
+        "N": 78.4,
+        "P": 46.9,
+        "K": 40.0,
+        "temperature": 25.0,
+        "humidity": 79.6,
+        "ph": 6.7,
+        "rainfall": 174.8
+      },
+      "kidneybeans": {
+        "N": 20.8,
+        "P": 67.5,
+        "K": 20.0,
+        "temperature": 20.1,
+        "humidity": 21.6,
+        "ph": 5.7,
+        "rainfall": 105.9
+      },
+      "lentil": {
+        "N": 18.8,
+        "P": 68.4,
+        "K": 19.4,
+        "temperature": 24.5,
+        "humidity": 64.8,
+        "ph": 6.9,
+        "rainfall": 45.7
+      },
+      "maize": {
+        "N": 77.8,
+        "P": 48.4,
+        "K": 19.8,
+        "temperature": 22.4,
+        "humidity": 65.1,
+        "ph": 6.2,
+        "rainfall": 84.8
+      },
+      "mango": {
+        "N": 20.1,
+        "P": 27.2,
+        "K": 29.9,
+        "temperature": 31.2,
+        "humidity": 50.2,
+        "ph": 5.8,
+        "rainfall": 94.7
+      },
+      "mothbeans": {
+        "N": 21.4,
+        "P": 48.0,
+        "K": 20.2,
+        "temperature": 28.2,
+        "humidity": 53.2,
+        "ph": 6.8,
+        "rainfall": 51.2
+      },
+      "mungbean": {
+        "N": 21.0,
+        "P": 47.3,
+        "K": 19.9,
+        "temperature": 28.5,
+        "humidity": 85.5,
+        "ph": 6.7,
+        "rainfall": 48.4
+      },
+      "muskmelon": {
+        "N": 100.3,
+        "P": 17.7,
+        "K": 50.1,
+        "temperature": 28.7,
+        "humidity": 92.3,
+        "ph": 6.4,
+        "rainfall": 24.7
+      },
+      "orange": {
+        "N": 19.6,
+        "P": 16.6,
+        "K": 10.0,
+        "temperature": 22.8,
+        "humidity": 92.2,
+        "ph": 7.0,
+        "rainfall": 110.5
+      },
+      "papaya": {
+        "N": 49.9,
+        "P": 59.0,
+        "K": 50.0,
+        "temperature": 33.7,
+        "humidity": 92.4,
+        "ph": 6.7,
+        "rainfall": 142.6
+      },
+      "pigeonpeas": {
+        "N": 20.7,
+        "P": 67.7,
+        "K": 20.3,
+        "temperature": 27.7,
+        "humidity": 48.1,
+        "ph": 5.8,
+        "rainfall": 149.5
+      },
+      "pomegranate": {
+        "N": 18.9,
+        "P": 18.8,
+        "K": 40.2,
+        "temperature": 21.8,
+        "humidity": 90.1,
+        "ph": 6.4,
+        "rainfall": 107.5
+      },
+      "rice": {
+        "N": 79.9,
+        "P": 47.6,
+        "K": 39.9,
+        "temperature": 23.7,
+        "humidity": 82.3,
+        "ph": 6.4,
+        "rainfall": 236.2
+      },
+      "watermelon": {
+        "N": 99.4,
+        "P": 17.0,
+        "K": 50.2,
+        "temperature": 25.6,
+        "humidity": 85.2,
+        "ph": 6.5,
+        "rainfall": 50.8
+      }
+    }
+  },
+  "yield": {
+    "chosen": "Decision Tree",
+    "results": [
+      {
+        "model": "Decision Tree",
+        "r2": 0.9788,
+        "mae": 3768.8,
+        "rmse": 12399.4
+      },
+      {
+        "model": "Random Forest",
+        "r2": 0.9877,
+        "mae": 3479.3,
+        "rmse": 9461.1
+      },
+      {
+        "model": "Gradient Boosting",
+        "r2": 0.8732,
+        "mae": 19396.3,
+        "rmse": 30322.7
+      },
+      {
+        "model": "K-Nearest Neighbors",
+        "r2": 0.9854,
+        "mae": 4312.4,
+        "rmse": 10278.1
+      },
+      {
+        "model": "Linear Regression",
+        "r2": 0.7551,
+        "mae": 29582.5,
+        "rmse": 42144.0
+      }
+    ],
+    "test_size": 5649,
+    "crops": [
+      "Cassava",
+      "Maize",
+      "Plantains and others",
+      "Potatoes",
+      "Rice, paddy",
+      "Sorghum",
+      "Soybeans",
+      "Sweet potatoes",
+      "Wheat",
+      "Yams"
+    ],
+    "countries": [
+      "Albania",
+      "Algeria",
+      "Angola",
+      "Argentina",
+      "Armenia",
+      "Australia",
+      "Austria",
+      "Azerbaijan",
+      "Bahamas",
+      "Bahrain",
+      "Bangladesh",
+      "Belarus",
+      "Belgium",
+      "Botswana",
+      "Brazil",
+      "Bulgaria",
+      "Burkina Faso",
+      "Burundi",
+      "Cameroon",
+      "Canada",
+      "Central African Republic",
+      "Chile",
+      "Colombia",
+      "Croatia",
+      "Denmark",
+      "Dominican Republic",
+      "Ecuador",
+      "Egypt",
+      "El Salvador",
+      "Eritrea",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Ghana",
+      "Greece",
+      "Guatemala",
+      "Guinea",
+      "Guyana",
+      "Haiti",
+      "Honduras",
+      "Hungary",
+      "India",
+      "Indonesia",
+      "Iraq",
+      "Ireland",
+      "Italy",
+      "Jamaica",
+      "Japan",
+      "Kazakhstan",
+      "Kenya",
+      "Latvia",
+      "Lebanon",
+      "Lesotho",
+      "Libya",
+      "Lithuania",
+      "Madagascar",
+      "Malawi",
+      "Malaysia",
+      "Mali",
+      "Mauritania",
+      "Mauritius",
+      "Mexico",
+      "Montenegro",
+      "Morocco",
+      "Mozambique",
+      "Namibia",
+      "Nepal",
+      "Netherlands",
+      "New Zealand",
+      "Nicaragua",
+      "Niger",
+      "Norway",
+      "Pakistan",
+      "Papua New Guinea",
+      "Peru",
+      "Poland",
+      "Portugal",
+      "Qatar",
+      "Romania",
+      "Rwanda",
+      "Saudi Arabia",
+      "Senegal",
+      "Slovenia",
+      "South Africa",
+      "Spain",
+      "Sri Lanka",
+      "Sudan",
+      "Suriname",
+      "Sweden",
+      "Switzerland",
+      "Tajikistan",
+      "Thailand",
+      "Tunisia",
+      "Turkey",
+      "Uganda",
+      "Ukraine",
+      "United Kingdom",
+      "Uruguay",
+      "Zambia",
+      "Zimbabwe"
+    ],
+    "india_defaults": {
+      "pesticides": 46195.0,
+      "annual_rainfall": 1083.0,
+      "year": 2013
+    }
+  }
+}
