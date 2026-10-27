@@ -62,7 +62,7 @@ export default function TwinCanvas({
   return (
     <Canvas
       shadows="soft"
-      dpr={quality === "high" ? [1, 2] : [1, 1.25]}
+      dpr={quality === "high" ? [1, 1.35] : [1, 1.0]}
       gl={{ antialias: false, powerPreference: "high-performance", preserveDrawingBuffer: true }}
       onCreated={({ gl }) => { gl.toneMapping = THREE.ACESFilmicToneMapping; gl.toneMappingExposure = 0.86; }}
     >
@@ -81,7 +81,7 @@ export default function TwinCanvas({
       </Suspense>
       {quality === "high" ? (
         <EffectComposer multisampling={0} enableNormalPass={false}>
-          <N8AO halfRes aoRadius={1.6} intensity={2.2} distanceFalloff={0.6} quality="medium" />
+          <N8AO halfRes aoRadius={1.6} intensity={2.2} distanceFalloff={0.6} quality="low" />
           <Bloom mipmapBlur luminanceThreshold={1.1} intensity={0.55} />
           <SMAA />
           <Vignette offset={0.28} darkness={0.55} />
