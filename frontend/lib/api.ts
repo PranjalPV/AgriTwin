@@ -1,6 +1,9 @@
 import { DEMO_NORMALS, local } from "./localEngine";
 
-export const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const rawApi = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").trim().replace(/\/+$/, "");
+export const API = rawApi.startsWith("http://") || rawApi.startsWith("https://")
+  ? rawApi
+  : `https://${rawApi}`;
 /** Hosted demo build: models run in the browser, no backend needed. */
 export const DEMO = process.env.NEXT_PUBLIC_DEMO === "1";
 
