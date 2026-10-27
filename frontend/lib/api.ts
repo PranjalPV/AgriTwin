@@ -60,13 +60,84 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
   return r.json();
 }
 
+/** Directly fetch Open-Meteo from the browser to avoid Render datacenter IP 429 rate limits */
+async function clientLiveWeather(lat: number, lon: number) {
+  const today = new Date();
+  const d370 = new Date(today.getTime() - 370 * 86400000);
+  const d6 = new Date(today.getTime() - 6 * 86400000);
+  const fmt = (d: Date) => d.toISOString().split("T")[0];
+
+  const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,cloud_cover&daily=precipitation_sum,temperature_2m_mean,relative_humidity_2m_mean&past_days=90&forecast_days=1&timezone=auto`;
+  const archiveUrl = `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lon}&start_date=${fmt(d370)}&end_date=${fmt(d6)}&daily=precipitation_sum&timezone=auto`;
+
+  const [fRes, aRes] = await Promise.all([
+    fetch(forecastUrl),
+    fetch(archiveUrl),
+  ]);
+
+  if (!fRes.ok || !aRes.ok) {
+    throw new Error(`Open-Meteo direct status: ${!fRes.ok ? fRes.status : aRes.status}`);
+  }
+
+  const [fj, aj] = await Promise.all([fRes.json(), aRes.json()]);
+
+  const daily = fj.daily || {};
+  const seasonRain = (daily.precipitation_sum || []).reduce((acc: number, x: number | null) => acc + (x || 0), 0);
+  const temps = (daily.temperature_2m_mean || []).filter((x: number | null) => x !== null && x !== undefined);
+  const hums = (daily.relative_humidity_2m_mean || []).filter((x: number | null) => x !== null && x !== undefined);
+  const annual = (aj.daily?.precipitation_sum || []).reduce((acc: number, x: number | null) => acc + (x || 0), 0);
+  const cur = fj.current || {};
+
+  return {
+    current: {
+      temperature: cur.temperature_2m ?? 25.0,
+      humidity: cur.relative_humidity_2m ?? 65,
+      precipitation: cur.precipitation ?? 0,
+      wind: cur.wind_speed_10m ?? 8,
+      cloud: cur.cloud_cover ?? 20,
+    },
+    suggested: {
+      temperature: temps.length ? Math.round((temps.reduce((a: number, b: number) => a + b, 0) / temps.length) * 10) / 10 : (cur.temperature_2m ?? 25.0),
+      humidity: hums.length ? Math.round((hums.reduce((a: number, b: number) => a + b, 0) / hums.length) * 10) / 10 : (cur.relative_humidity_2m ?? 65),
+      season_rainfall: Math.round(seasonRain * 10) / 10,
+      annual_rainfall: Math.round(annual * 10) / 10,
+    },
+    source: "Open-Meteo (Direct)",
+  };
+}
+
+async function clientGeocode(q: string) {
+  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=en`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Geocoding status: ${res.status}`);
+  const data = await res.json();
+  return (data.results || []).map((x: { name: string; admin1?: string; country?: string; latitude: number; longitude: number }) => ({
+    name: x.name,
+    admin: x.admin1,
+    country: x.country,
+    lat: x.latitude,
+    lon: x.longitude,
+  }));
+}
+
 const server = {
   health: () => req<{ status: string; gemini: boolean; storage: string }>("/api/health"),
   meta: () => req<Meta>("/api/meta"),
-  geocode: (q: string) => req<{ name: string; admin?: string; country?: string; lat: number; lon: number }[]>(`/api/geocode?q=${encodeURIComponent(q)}`),
-  weather: (lat: number, lon: number) =>
-    req<{ current: Record<string, number>; suggested: Pick<Inputs, "temperature" | "humidity" | "season_rainfall" | "annual_rainfall"> }>(
-      `/api/weather?lat=${lat}&lon=${lon}`),
+  geocode: async (q: string) => {
+    try {
+      return await clientGeocode(q);
+    } catch {
+      return req<{ name: string; admin?: string; country?: string; lat: number; lon: number }[]>(`/api/geocode?q=${encodeURIComponent(q)}`);
+    }
+  },
+  weather: async (lat: number, lon: number) => {
+    try {
+      return await clientLiveWeather(lat, lon);
+    } catch {
+      return req<{ current: Record<string, number>; suggested: Pick<Inputs, "temperature" | "humidity" | "season_rainfall" | "annual_rainfall"> }>(
+        `/api/weather?lat=${lat}&lon=${lon}`);
+    }
+  },
   simulate: (i: Inputs, save = true) => req<Result>(`/api/simulate?save=${save}`, { method: "POST", body: JSON.stringify(i) }),
   advice: (inputs: Inputs, result: Result, lang: "en" | "hi") =>
     req<Advice>("/api/advice", { method: "POST", body: JSON.stringify({ inputs, result, lang }) }),
